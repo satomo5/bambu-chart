@@ -1,3 +1,5 @@
+// main stock database
+
 export default {
   AAIT:
   {

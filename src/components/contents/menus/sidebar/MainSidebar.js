@@ -1,5 +1,6 @@
 import React from 'react';
 
+// function for render sidebar (search & stock data cardboard)
 function MainSidebar(props) {
     const {
         stockSymbol,
@@ -10,8 +11,11 @@ function MainSidebar(props) {
         handleSelect,
     } = props;
 
+    // count how much the stock data and show it. 
+    // in this case, it will show all the data stock from stockdata.js  
     const cardViewLength = stockSymbol.length;
 
+    // render the sidebar
     return (
         <div className="sidebar">
             <div className="sidebar-search">
@@ -26,6 +30,7 @@ function MainSidebar(props) {
     )
 }
 
+// set default value
 MainSidebar.defaultProps = {
     stockSymbol: [],
     filterTxt: '',

@@ -7,6 +7,7 @@ const {
     yAxis,
 } = LayoutChart;
 
+// function for drawing helping line in y axis
 function Grid(props) {
     const { sortDates, xDataInterval } = props;
     return (

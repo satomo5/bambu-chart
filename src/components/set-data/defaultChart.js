@@ -1,3 +1,5 @@
+// default set up for chart
+
 export default {
     chartLayoutWidth: 600,
     chartLayoutHeight: 300,

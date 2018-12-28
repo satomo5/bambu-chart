@@ -4,10 +4,12 @@ import {getDataStock, filterDataStocks} from '../../get-data/Request';
 import Sidebar from './sidebar/MainSidebar';
 import Chart from '../chart/Chart';
 
+// save the data in local storage
 const symbolFilter = window.localStorage.getItem('filterTxt') || '';
 const symbolIndexStorage = window.localStorage.getItem('symbolIndex');
 const symbolStorage = window.localStorage.getItem('symbol');
 
+// function for render the content (sidebar and ohlc chart)
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -21,17 +23,18 @@ class Main extends Component {
       error: null,
     };
     
+
     this.handleFilter = this.handleFilter.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleAPISearch = this.handleAPISearch.bind(this);
   }
   
-
   componentDidMount() {
     const { symbol = 'AAPL'} = this.state;
     this.handleAPISearch(symbol);
   }
-
+  
+  // function for search
   async handleFilter(filterTxt = '') {
     try {
       const stockSymbol = filterDataStocks(filterTxt);
@@ -40,7 +43,8 @@ class Main extends Component {
       this.setState({error});
     }
   }
-
+  
+  // function for select the cardboard stock
   async handleSelect(symbol) {
     const {filterTxt, symbolIndex, symbol: prevSymbol} = this.state;
     try {
@@ -54,6 +58,7 @@ class Main extends Component {
     }
   }
 
+  // function for load api's data and error handler
   async handleAPISearch(symbol) {
     try {
       await this.setState({loading: true});
@@ -70,7 +75,7 @@ class Main extends Component {
         await this.setState({
           loading: false,
           error: {
-            message: 'Error loading the data. Try again later.',
+            message: 'Error loading the data. Check your internet or refresh your browser.',
           },
         });
       }
@@ -79,7 +84,7 @@ class Main extends Component {
         loading: false,
         error: {
           ...error,
-          alt: 'Error loading the data. Try again later.',
+          alt: 'Error loading the data. Check your internet or refresh your browser.',
         },
       });
     }
@@ -96,6 +101,7 @@ class Main extends Component {
       error = {},
     } = this.state;
     
+    // render the main content
     return (
       <div className="content">
         <Sidebar className="content-sidebar" stockSymbol={stockSymbol} filterTxt={filterTxt} symbolIndex={symbolIndex} symbol={symbol} handleFilter={this.handleFilter} viewContent={this.viewContent} handleSelect={this.handleSelect} />
@@ -105,6 +111,7 @@ class Main extends Component {
             <span>{stockData[symbol].security}</span>
           </div>
           <div className="content-main-content">
+            {/* check the data loading is it done or fail */}
             {error ? (
               <div className="content-main-error">
                 <p>

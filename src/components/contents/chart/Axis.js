@@ -8,6 +8,7 @@ const {
     yAxis,
 } = LayoutChart;
 
+// function for drawing x axis and y axis main line
 function Axis () {
     return (
         <g className="chart-line-main">

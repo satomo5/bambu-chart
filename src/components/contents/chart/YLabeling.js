@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LayoutChart from '../../set-data/defaultChart';
-import CheckDP from '../../set-data/Check';
+import CheckDP from '../../set-data/setFloatData';
 
 const {
     chartLayoutHeight,
@@ -8,14 +8,17 @@ const {
     yData,
 } = LayoutChart;
 
+// set max height/y axis
 const ptsHeight = chartLayoutHeight - yAxis - (2 * +yData);
 
+// function for set prices label in y axis based on highest and lowest range prices
 class YLabeling extends Component {
     constructor(props) {
         super(props);
         this.yLabeling = this.yLabeling.bind(this);
     }
 
+    // set interval prices
     yLabeling() {
         const { minData: min, maxData: max } = this.props;
         const interval = 7;
@@ -26,7 +29,7 @@ class YLabeling extends Component {
             output = [...output, {
                 i,
                 y: +ptsHeight + +yData - (+yInterval * i),
-                txt: CheckDP({ input: +(min +(yDataInterval * i)), dp: 2 }),
+                txt: CheckDP({ input: +(min +(yDataInterval * i)), dp: 3 }),
             }];
         }
         return output;

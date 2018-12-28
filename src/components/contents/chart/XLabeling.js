@@ -8,6 +8,7 @@ const {
     yAxis,
 } = LayoutChart;
 
+// function for set dates label in x axis based on month
 function XLabeling (props) {
     const { sortDates, xDataInterval } = props;
     const xLabeling = sortDates.reduce((acc, pt, i) => {
@@ -21,6 +22,8 @@ function XLabeling (props) {
             },
         };
     }, {});
+
+    // set places for dates label
     return (
         <g>
             {Object.keys(xLabeling).map((calender) => {

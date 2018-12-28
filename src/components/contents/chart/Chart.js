@@ -10,6 +10,7 @@ import Symbol from './Symbol';
 const { chartLayoutWidth, chartLayoutHeight, xAxis } = LayoutChart;
 
 function Chart(props) {
+  // set data
   const { data = {} } = props;
   const dates = Object.keys(data);
   const sortDates = dates.sort((a, b) => (dayjs(a) - dayjs(b)));
@@ -27,12 +28,22 @@ function Chart(props) {
     };
   }, {});
 
+  // drawing main chart
   return (
     <svg width="100%" height="70vh" viewBox={`0 0 ${chartLayoutWidth} ${chartLayoutHeight}`}>
-      <Axis />
+      {/* drawing main line between x & y */}
+      <Axis /> 
+
+      {/* set dates label on line x */}
       <XLabeling sortDates={sortDates} xDataInterval={xDataInterval} />
+
+      {/* set prices label on line y */}
       <YLabeling minData={minData} maxData={maxData} />
+
+      {/* set grid line for helping to read chart */}
       <Grid sortDates={sortDates} xDataInterval={xDataInterval} />
+
+      {/* set and drawing the ohlc chart */}
       <Symbol data={data} sortDates={sortDates} xDataInterval={xDataInterval} minData={minData} maxData={maxData} />
     </svg>
   );
