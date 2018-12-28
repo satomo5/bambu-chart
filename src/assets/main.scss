@@ -1,0 +1,29 @@
+// Global Setting
+
+@import url(https://fonts.googleapis.com/css?family=Roboto|Staatliches);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  font-family: 'Roboto', sans-serif;
+  display: grid;
+}
+
+// Component Style Setting
+
+@import //navbar
+  './navbar',
+  './footer',
+  './content/chart',
+  './content/content',
+  './content/sidebar';
